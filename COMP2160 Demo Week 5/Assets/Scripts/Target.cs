@@ -19,7 +19,7 @@ public class Target : MonoBehaviour
     // Finite State Machine:
     //
     //          upTime      upDuration
-    //  (Start) -----> (Up) --------0> (Down)
+    //  (Start) -----> (Up) ---------> (Down)
     //                    \              /
     //                 hit \            / hit
     //                      -> (Dead) <-
@@ -88,7 +88,8 @@ public class Target : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other)
-    {
+    {   
+        Debug.Log("OnTriggerEnter");
         // hide the target
         state = State.Dead;
         cylinder.gameObject.SetActive(false);
