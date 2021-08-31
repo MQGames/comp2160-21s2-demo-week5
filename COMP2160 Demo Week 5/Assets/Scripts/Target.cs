@@ -16,7 +16,6 @@ public class Target : MonoBehaviour
     private Transform upPosition;    
     private Transform downPosition;    
     private float timer;
-    private Scorekeeper scorekeeper;
 
     // Finite State Machine:
     //
@@ -31,8 +30,6 @@ public class Target : MonoBehaviour
 
     void Start()
     {
-        scorekeeper = FindObjectOfType<Scorekeeper>();
-
         cylinder = transform.Find("Cylinder");
         upPosition = transform.Find("Up");
         downPosition = transform;
@@ -93,11 +90,10 @@ public class Target : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {   
-        Debug.Log("OnTriggerEnter");
         // hide the target
         state = State.Dead;
         cylinder.gameObject.SetActive(false);
 
-        scorekeeper.AddPointsForHit();
+        Scorekeeper.Instance.AddPointsForHit();
     }
 }

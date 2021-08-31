@@ -25,7 +25,9 @@ public class ShootBullet : MonoBehaviour
                 b.transform.position = ray.origin;
                 b.Direction = ray.direction;
                 timer = cooldown;
-            }
+
+                Scorekeeper.Instance.BulletFired();
+            }            
         }
 
     }
