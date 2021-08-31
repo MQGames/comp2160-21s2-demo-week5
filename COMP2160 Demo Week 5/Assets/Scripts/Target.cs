@@ -11,10 +11,12 @@ public class Target : MonoBehaviour
     [SerializeField]
     private float speed = 1f; // m/s
 
+
     private Transform cylinder;
     private Transform upPosition;    
     private Transform downPosition;    
     private float timer;
+    private Scorekeeper scorekeeper;
 
     // Finite State Machine:
     //
@@ -29,6 +31,8 @@ public class Target : MonoBehaviour
 
     void Start()
     {
+        scorekeeper = FindObjectOfType<Scorekeeper>();
+
         cylinder = transform.Find("Cylinder");
         upPosition = transform.Find("Up");
         downPosition = transform;
@@ -93,5 +97,7 @@ public class Target : MonoBehaviour
         // hide the target
         state = State.Dead;
         cylinder.gameObject.SetActive(false);
+
+        scorekeeper.AddPointsForHit();
     }
 }
